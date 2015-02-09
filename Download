@@ -1,0 +1,58 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Download;
+
+import java.awt.FlowLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+/**
+ *
+ * @author 12003065137
+ */
+public class DownloadPageView extends JFrame implements ActionListener{
+    JButton downloadbutton;
+    PreparingDownload downloadingview;
+    
+    public DownloadPageView()
+    {   Icon c= new ImageIcon("download.jpg");
+	downloadbutton =new JButton(c);
+        downloadbutton.setMargin(new Insets(0, 0, 0, 0));
+        ShowDownloadPage();
+    }
+    public  void ShowDownloadPage()
+    {   
+        setContentPane(new JLabel(new ImageIcon("frogwallpaper.jpg")));
+        getContentPane().add(downloadbutton);
+        setLayout( new FlowLayout( ) ); 
+        setVisible(true);
+        
+        setBounds(0, 0, 1152, 648);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
+        
+        downloadbutton.addActionListener(this);
+    
+    }
+    
+        public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==downloadbutton)
+        {
+            dispose();
+            PreparingDownload downloadingview= new PreparingDownload();
+            Thread t1=new Thread(downloadingview);
+            t1.start();
+        }
+    }
+    
+    
+    
+}
